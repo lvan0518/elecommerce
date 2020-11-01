@@ -33,10 +33,10 @@
                                 <span>{{item.authName}}</span>
                             </template>
                             <!--二级菜单-->
-                            <el-menu-item :index="'/'+ item.path + ''"
+                            <el-menu-item :index="'/'+ subItem.path + ''"
                                           v-for="subItem in item.children"
                                           :key="subItem.id"
-                                          @click="saveNavState('/'+ item.path)"
+                                          @click="saveNavState('/'+ subItem.path)"
                             >
                                 <template slot="title">
                                     <!--图标-->
@@ -80,7 +80,7 @@
             },
            async getMenuList() {
                 const {data:res} = await this.$http.get('menus');
-               // console.log(res);
+               console.log(res);
                if(res.meta.status !== 200) return this.$message.error(res.meta.ms)
                this.menuList = res.data;
            },
